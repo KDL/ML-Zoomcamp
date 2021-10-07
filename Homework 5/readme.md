@@ -9,7 +9,7 @@ Below are the files, and possible explanation, used during homework week 5.
 ## Q2: Scikit-learn 1.0's hashcode 
 > [homework-5.ipynb](homework-5.ipynb) (Preparation part)
 
-## Q3: Local :: Probability of chruning
+## Q3: Local :: Probability of Churning
 > [homework-5.ipynb](homework-5.ipynb)
 
 For this, VS Code (Jupyter) was forced to run using the kernel managed by virtual env (pipenv). The Pipfile and Pipfile.lock were later copied from user folder.

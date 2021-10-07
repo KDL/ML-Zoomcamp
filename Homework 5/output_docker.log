@@ -1,42 +1,1 @@
-Sending build context to Docker daemon  20.99kB
-Step 1/6 : FROM agrigorev/zoomcamp-model:3.8.12-slim
- ---> f0f43f7bc6e0
-Step 2/6 : RUN pip install pipenv
- ---> Running in 7558b8038d25
-Collecting pipenv
-  Downloading pipenv-2021.5.29-py2.py3-none-any.whl (3.9 MB)
-Collecting virtualenv-clone>=0.2.5
-  Downloading virtualenv_clone-0.5.7-py3-none-any.whl (6.6 kB)
-Collecting certifi
-  Downloading certifi-2021.5.30-py2.py3-none-any.whl (145 kB)
-Requirement already satisfied: setuptools>=36.2.1 in /usr/local/lib/python3.8/site-packages (from pipenv) (57.5.0)
-Collecting virtualenv
-  Downloading virtualenv-20.8.1-py2.py3-none-any.whl (5.3 MB)
-Requirement already satisfied: pip>=18.0 in /usr/local/lib/python3.8/site-packages (from pipenv) (21.2.4)
-Collecting backports.entry-points-selectable>=1.0.4
-  Downloading backports.entry_points_selectable-1.1.0-py2.py3-none-any.whl (6.2 kB)
-Collecting six<2,>=1.9.0
-  Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
-Collecting filelock<4,>=3.0.0
-  Downloading filelock-3.3.0-py3-none-any.whl (9.7 kB)
-Collecting platformdirs<3,>=2
-  Downloading platformdirs-2.4.0-py3-none-any.whl (14 kB)
-Collecting distlib<1,>=0.3.1
-  Downloading distlib-0.3.3-py2.py3-none-any.whl (496 kB)
-Installing collected packages: six, platformdirs, filelock, distlib, backports.entry-points-selectable, virtualenv-clone, virtualenv, certifi, pipenv
-Successfully installed backports.entry-points-selectable-1.1.0 certifi-2021.5.30 distlib-0.3.3 filelock-3.3.0 pipenv-2021.5.29 platformdirs-2.4.0 six-1.16.0 virtualenv-20.8.1 virtualenv-clone-0.5.7
-[91mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
-[0mRemoving intermediate container 7558b8038d25
- ---> 01165d76aa80
-Step 3/6 : WORKDIR /app
- ---> Running in 8a4dd9f7580b
-Removing intermediate container 8a4dd9f7580b
- ---> 918c53defb82
-Step 4/6 : COPY ["Pipfile", "Pipfile.lock", "./"]
- ---> a8604d73e7cd
-Step 5/6 : RUN pipenv install --system --deploy
- ---> Running in 92cf3bdb61c6
-Installing dependencies from Pipfile.lock (7574bb)...
-Removing intermediate container 92cf3bdb61c6
- ---> 2916fe1313a4
-Step 6/6 : COPY ["predict.py", "dv.bin", "model1.bin", "model2.bin", , "./"]
+Sending build context to Docker daemon  28.67kBStep 1/8 : FROM agrigorev/zoomcamp-model:3.8.12-slim ---> f0f43f7bc6e0Step 2/8 : RUN pip install pipenv ---> Using cache ---> fa178b73d1cfStep 3/8 : WORKDIR /app ---> Using cache ---> 888b32d62079Step 4/8 : COPY . /app ---> 23bc984c066eStep 5/8 : RUN pip install gunicorn ---> Running in a19370cb40c6Collecting gunicorn  Downloading gunicorn-20.1.0-py3-none-any.whl (79 kB)Requirement already satisfied: setuptools>=3.0 in /usr/local/lib/python3.8/site-packages (from gunicorn) (57.5.0)Installing collected packages: gunicornSuccessfully installed gunicorn-20.1.0[91mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0mRemoving intermediate container a19370cb40c6 ---> 504d7630ae2bStep 6/8 : RUN pipenv install --system --deploy ---> Running in 27f3b4b5f240Installing dependencies from Pipfile.lock (6720b2)...Removing intermediate container 27f3b4b5f240 ---> 03f577ba0964Step 7/8 : EXPOSE 9696 ---> Running in 86ed746bbdc2Removing intermediate container 86ed746bbdc2 ---> 94d4da5171e8Step 8/8 : ENTRYPOINT ["gunicorn",  "--bind=0.0.0.0:9696", "predict:app"] ---> Running in 3aca58be091bRemoving intermediate container 3aca58be091b ---> 2f52e86e090dSuccessfully built 2f52e86e090dSuccessfully tagged hw5:latest

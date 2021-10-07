@@ -15,7 +15,7 @@ Below are the files, and possible explanation, used during homework week 5.
 For this, VS Code (Jupyter) was forced to run using the kernel managed by virtual env (pipenv). The Pipfile and Pipfile.lock were later copied from user folder.
 
 
-> [local_getcust.py](local_getcust.py)
+> [local_getcust.py](local_getcust.py),
 
 Also, the same experiment was done in a normal python script inside the folder to ensure the same output.
 
@@ -37,4 +37,4 @@ Here, I had with Windows very serious problems. It *may be probably linked to Hy
 For the output I used:
 `sudo docker build -t main . > output_docker.log` to log the output into a log/text file.
 
-**<ins>Note</ins>: The output file is not from the last build**
+~~**<ins>Note</ins>: The output file is not from the last build**~~

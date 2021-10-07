@@ -14,6 +14,8 @@ Below are the files, and possible explanation, used during homework week 5.
 
 For this, VS Code (Jupyter) was forced to run using the kernel managed by virtual env (pipenv). The Pipfile and Pipfile.lock were later copied from user folder.
 
+For the final part, ``pipenv install numpy pandas flask gunicorn scikit-learn==1.0`` was used to generate the final Pipfile and Pipfile.lock. Due to multipython distribution, the path of python was forced using `--python="path_to_pythonn3.8.exe"`
+
 
 > [local_getcust.py](local_getcust.py),
 
@@ -28,7 +30,7 @@ Here, a first local server test was done to ensure an intrathread communication.
 
 
 ## Q5/Q6 Docker
-> **Server:** [Dockerfile](Dockerfile), [output_docker.log](output_docker.log), *served through VirtualBox/Linux Mint*
+> **Server:** Docker configured using [Dockerfile](Dockerfile), [output_docker.log](output_docker.log), *served through VirtualBox/Linux Mint*
 
 > **Client:** [homework-5.ipynb](homework-5.ipynb)
 
@@ -37,4 +39,4 @@ Here, I had with Windows very serious problems. It *may be probably linked to Hy
 For the output I used:
 `sudo docker build -t main . > output_docker.log` to log the output into a log/text file.
 
-~~**<ins>Note</ins>: The output file is not from the last build**~~
+~~*<ins>Note</ins>: The output file is not from the last build*~~ (fixed)

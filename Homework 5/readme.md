@@ -22,7 +22,7 @@ Also, the same experiment was done in a normal python script inside the folder t
 ## Q4:: Localhost :: Probability of Churning
 > **Client:** [homework-5.ipynb](homework-5.ipynb)
 > 
-> **Server:** predict.py (can be launched via launch_server.cmd), served through waitress
+> **Server:** [predict.py](predict.py) (can be launched via launch_server.cmd), served through waitress
 
 Here, a first local server test was done to ensure an intrathread communication. Due to the port 9696 being inaccessible, port 8001 was used instead.
 
@@ -37,3 +37,4 @@ Here, I had with Windows very serious problems. It *may be probably linked to Hy
 For the output I used:
 `sudo docker build -t main . > output_docker.log` to log the output into a log/text file.
 
+**<ins>Note</ins>: The output file is not from the last build**

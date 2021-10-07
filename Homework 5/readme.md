@@ -30,7 +30,7 @@ Here, a first local server test was done to ensure an intrathread communication.
 
 
 ## Q5/Q6 Docker
-> **Server:** Docker configured using [Dockerfile](Dockerfile), [output_docker.log](output_docker.log), *served through VirtualBox/Linux Mint*
+> **Server:** Docker configured using [Dockerfile](Dockerfile), [output_docker.log](output_docker.log), *served through VirtualBox/Linux Mint, through guincorn/flask*
 
 > **Client:** [homework-5.ipynb](homework-5.ipynb)
 

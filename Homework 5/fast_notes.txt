@@ -1,0 +1,78 @@
+Pickle dump/load: serializer and saver 
+Flask as a (web) server => not usable for production , needs to be deployed
+
+- guincorn: a possible deployment server for Linux and WSL
+- waitress: alternative (windows-compatible)
+
+
+-----------------------
+[`Linux, e.g. Mint']
+gunicorn --bind 0.0.0.0:9696 predict:app
+here -- predict is the name of the file
+
+[`Windows']
+waitress-serve --listen 0.0.0.0:9696 predict:app
+
+--------------------------
+Docker in Debian-based Linux:  sudo apt install docker.io
+(I have also installed docker-compose ,but not sure if it's necessary)
+
+> sudo docker run -it --rm python:3.8.12-slim
+Run Python on docker
+
+> docker run -it --rm --entrypoint=bash python:3.8.12-slim
+To enter docker, using bash mode
+
+
+>> Dockerfile:
+FROM python:3.8.12-slim
+
+RUN pip install pipenv
+
+WORKDIR /app
+
+COPY ["Pipfile", "Pipfile.lock", "./"]
+
+RUN pipenv install --system --deploy
+
+COPY ["predict.py", "dv.bin", "model1.bin" , "./"]
+---------------
+
+
+
+
+building docker (after having Dockerfile in the path)
+docker build -t homework5 .
+
+--------
+docker run -it --rm --entrypoint=bash homework5
+=> This allows to run the recently-built "homework5" docker image
+
+
+
+=======================================
+
+>> Dockerfile:
+FROM agrigorev/zoomcamp-model:3.8.12-slim
+
+RUN apt-get install gunicorn
+
+RUN pip install pipenv
+
+WORKDIR /app
+
+COPY ["Pipfile", "Pipfile.lock", "./"]
+
+RUN pipenv install --system --deploy
+
+COPY ["predict.py", "dv.bin", "model1.bin" , "./"]
+
+EXPOSE 9696
+
+ENTRYPOINT ["gunicorn",  "--bind=0.0.0.0:9696", "predict:app"]
+---------------
+
+sudo docker run -it --rm  homework5
+sudo docker run -it --rm -p 9696:9696  homework5
+
+

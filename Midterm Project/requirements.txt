@@ -1,0 +1,10 @@
+tqdm 		# progress bar
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+flask
+
+#requests	# download
+#patool		# for extraction

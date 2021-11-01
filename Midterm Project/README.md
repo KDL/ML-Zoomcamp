@@ -7,6 +7,8 @@ by *Ahmed Yahia Kallel* for ML Zoomcamp.
 * _The final results are not very impressive. The work is done purely to demonstrate my capability to work with a database, clean it, analyze it, use different models with tuning, then deploy the model for prediction in local/local cloud/public cloud. Possible improvements could be to use other algorithms for a better classification. However, the guidelines say that it is sufficient to train and tune the models discussed in the courses (decision trees and linear models), which have been fulfilled during this work._
 ---
 
+***Note: In case [notebook.ipynb](notebook.ipynb) fails to load, please use [notebook_failsafe.ipynb](notebook_failsafe.ipynb). The "failsafe" version removes the huge output of the cells that causes the notebook load to fail in some cases***
+
 
 ## Part 1: On the database, features analysis, and model selection
 

@@ -13,7 +13,7 @@ by *Ahmed Yahia Kallel* for ML Zoomcamp.
  ### Introduction
  A **Stroke** is a medical condition that may cause sudden death. In these cases, the movement ability of the patient reduces or even stops. The patient may also experience problems in speaking and understanding languages. If not treated in time, it will cause death [1]. In addition, stroke is correlated with high blood pressure, smoking, obesity, high blood cholesterol, and diabetes. 
 
-In this work, we propose to use the database in [2] to identify people who are likely to be suffering a stroke. And to identify the possible causes.
+**In this work, we propose to use the database in [2] to identify people who are likely to be suffering a stroke. And to identify the possible causes. The final output is a classification/boolean problem**
 
 
 [1] https://en.wikipedia.org/wiki/Stroke  

@@ -13,7 +13,7 @@ by *Ahmed Yahia Kallel* for ML Zoomcamp.
  ### Introduction
  A **Stroke** is a medical condition that may cause sudden death. In these cases, the movement ability of the patient reduces or even stops. The patient may also experience problems in speaking and understanding languages. If not treated in time, it will cause death [1]. In addition, stroke is correlated with high blood pressure, smoking, obesity, high blood cholesterol, and diabetes. 
 
-**In this work, we propose to use the database in [2] to identify people who are likely to be suffering a stroke. And to identify the possible causes. The final output is a classification/boolean problem**
+**In this work, we propose to use the database in [2] to identify people who are likely to be suffering a stroke. The final output is a classification/boolean problem**
 
 
 [1] https://en.wikipedia.org/wiki/Stroke  
@@ -165,7 +165,7 @@ In order to assure cross-compatibility with other platforms/environments, pipenv
     ```
     python -m pipenv check
     ```
-      <span style='font-size:8pt'>* Note in Windows, it is possible to use file explorer navigate to the folder, where the files are situated, and then in navigation current path (i.e., where the full path is shown), to select and remove the current path, write **cmd** and press enter to launch cmd in the current path
+     
 
 4. Probably not, so please install all the packages from pipfile.lock
     ```

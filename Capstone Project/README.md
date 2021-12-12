@@ -131,7 +131,10 @@ The final validation scores are as follows:
 * **Voting Regressor**: Validation score: 0.538
 * **Stacking Regressor**: Validation score: 0.535
 
-The final output of these regressors are saved as pickle file as [pipeline_voting.bin](pipeline_voting.bin), and [pipeline_stacking.bin](pipeline_stacking.bin), respectively. They could substitute [pipeline.bin](pipeline.bin) directly during the classification phase(after renaming), if desired.
+The final output of these regressors are saved as pickle file as ~~[pipeline_voting.bin](pipeline_voting.bin)~~, and ~~[pipeline_stacking.bin](pipeline_stacking.bin)~~ , respectively. They could substitute [pipeline.bin](pipeline.bin) directly during the classification phase(after renaming), if desired. <span style='color:red;font-weight:bold'>However, GitHub didn't allow me to upload these files, please download the following files and copy them to the _main_ folder (next File_Notebook.ipynb, not the extra folder) </span>
+- [Download pipeline_voting.bin from here](https://drive.google.com/file/d/1GrjjenFRZHjWCST50Hi2QvF-xL5MZitQ/view?usp=sharing)
+- [Download pipeline_stacking.bin from here](https://drive.google.com/file/d/1tBqTV1n38f_pjMKIq5Kj7MFFgdeo1H0K/view?usp=sharing)
+
 
  Please use [extra_predictors/predict_stacking.py](extra_predictors/predict_stacking.py) or [extra_predictors/predict_voting.py](extra_predictors/predict_voting.py)  for fast-testing (no renaming is needed in this case).
 

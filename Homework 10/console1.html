@@ -1,0 +1,135 @@
+<pre><font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10</b></font>$ git clone https://github.com/alexeygrigorev/mlbookcamp-code.git
+Cloning into &apos;mlbookcamp-code&apos;...
+remote: Enumerating objects: 2207, done.
+remote: Counting objects: 100% (1213/1213), done.
+remote: Compressing objects: 100% (455/455), done.
+remote: Total 2207 (delta 862), reused 980 (delta 728), pack-reused 994
+Receiving objects: 100% (2207/2207), 7.20 MiB | 9.47 MiB/s, done.
+Resolving deltas: 100% (1315/1315), done.
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10</b></font>$  cd mlbookcamp-code/course-zoomcamp/05-deployment/code/
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo docker build -t churn-model:v001 .
+[sudo] password for kallel:       
+Sending build context to Docker daemon  46.59kB
+Step 1/8 : FROM python:3.8.12-slim
+ ---&gt; 23a6a071a881
+Step 2/8 : RUN pip install pipenv
+ ---&gt; Using cache
+ ---&gt; 564c77612c88
+Step 3/8 : WORKDIR /app
+ ---&gt; Using cache
+ ---&gt; 71f5ff95f289
+Step 4/8 : COPY [&quot;Pipfile&quot;, &quot;Pipfile.lock&quot;, &quot;./&quot;]
+ ---&gt; Using cache
+ ---&gt; 18c8910da980
+Step 5/8 : RUN pipenv install --system --deploy
+ ---&gt; Using cache
+ ---&gt; 6e261afb7b87
+Step 6/8 : COPY [&quot;predict.py&quot;, &quot;model_C=1.0.bin&quot;, &quot;./&quot;]
+ ---&gt; Using cache
+ ---&gt; 723451e7c93c
+Step 7/8 : EXPOSE 9696
+ ---&gt; Using cache
+ ---&gt; 6d3fb24724ed
+Step 8/8 : ENTRYPOINT [&quot;gunicorn&quot;, &quot;--bind=0.0.0.0:9696&quot;, &quot;predict:app&quot;]
+ ---&gt; Using cache
+ ---&gt; 46c6e2e478a2
+Successfully built 46c6e2e478a2
+Successfully tagged churn-model:v001
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo docker run -it --rm -p 9696:9696 churn-model:v001
+[2022-01-01 15:20:00 +0000] [1] [INFO] Starting gunicorn 20.1.0
+[2022-01-01 15:20:00 +0000] [1] [INFO] Listening at: http://0.0.0.0:9696 (1)
+[2022-01-01 15:20:00 +0000] [1] [INFO] Using worker: sync
+[2022-01-01 15:20:00 +0000] [8] [INFO] Booting worker with pid: 8
+^C[2022-01-01 15:20:12 +0000] [1] [INFO] Handling signal: int
+[2022-01-01 15:20:13 +0000] [1] [INFO] Shutting down: Master
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ python3 predict-test.py
+{&apos;churn&apos;: False, &apos;churn_probability&apos;: 0.32575611033978513}
+not sending promo email to xyz-123
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    98  100    98    0     0    742      0 --:--:-- --:--:-- --:--:--   742
+100   655  100   655    0     0   3179      0 --:--:-- --:--:-- --:--:--  3179
+100 6660k  100 6660k    0     0  3377k      0  0:00:01  0:00:01 --:--:-- 5758k
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ chmod +x ./kind
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ kind --version
+
+Command &apos;kind&apos; not found, did you mean:
+
+  command &apos;kid&apos; from deb python-kid (0.9.6-3build1)
+  command &apos;kino&apos; from deb kino (1.3.4+dfsg0-1build1)
+  command &apos;king&apos; from deb king (2.23.161103+dfsg1-3)
+  command &apos;kfind&apos; from deb kfind (4:19.12.3-0ubuntu1)
+  command &apos;find&apos; from deb findutils (4.7.0-1ubuntu1)
+
+Try: sudo apt install &lt;deb name&gt;
+
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ ./kind --version
+kind version 0.11.1
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ ./kind create cluster
+<font color="#CC0000">ERROR</font>: failed to create cluster: failed to list clusters: command &quot;docker ps -a --filter label=io.x-k8s.kind.cluster=kind --format &apos;{{.Names}}&apos;&quot; failed with error: exit status 1
+<font color="#CC0000">Command Output</font>: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/json?all=1&amp;filters=%7B%22label%22%3A%7B%22io.x-k8s.kind.cluster%3Dkind%22%3Atrue%7D%7D: dial unix /var/run/docker.sock: connect: permission denied
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo ./kind create cluster
+<font color="#CC0000">ERROR</font>: failed to create cluster: node(s) already exist for a cluster with the name &quot;kind&quot;
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo ./kind  delete cluster
+Deleting cluster &quot;kind&quot; ...
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo ./kind create cluster
+Creating cluster &quot;kind&quot; ...
+ <font color="#4E9A06">✓</font> Ensuring node image (kindest/node:v1.21.1) 🖼
+ <font color="#4E9A06">✓</font> Preparing nodes 📦  
+ <font color="#4E9A06">✓</font> Writing configuration 📜 
+ <font color="#4E9A06">✓</font> Starting control-plane 🕹️ 
+ <font color="#4E9A06">✓</font> Installing CNI 🔌 
+ <font color="#4E9A06">✓</font> Installing StorageClass 💾 
+Set kubectl context to &quot;kind-kind&quot;
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-kind
+
+Not sure what to do next? 😅  Check out https://kind.sigs.k8s.io/docs/user/quick-start/
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo kubectl get service
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.96.0.1    &lt;none&gt;        443/TCP   24s
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo kubectl get pod
+No resources found in default namespace.
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ kind load docker-image churn:v001
+
+Command &apos;kind&apos; not found, did you mean:
+
+  command &apos;kino&apos; from deb kino (1.3.4+dfsg0-1build1)
+  command &apos;kfind&apos; from deb kfind (4:19.12.3-0ubuntu1)
+  command &apos;find&apos; from deb findutils (4.7.0-1ubuntu1)
+  command &apos;kid&apos; from deb python-kid (0.9.6-3build1)
+  command &apos;king&apos; from deb king (2.23.161103+dfsg1-3)
+
+Try: sudo apt install &lt;deb name&gt;
+
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo ./kind load docker-image churn:v001
+<font color="#CC0000">ERROR</font>: image: &quot;churn:v001&quot; not present locally
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo ./kind load docker-image churn-model:v001
+Image: &quot;churn-model:v001&quot; with ID &quot;sha256:46c6e2e478a29f8c10fd5f6cf765ed0ab1b3f4ae5bce14b2c3283f1ce5d2337c&quot; not yet present on node &quot;kind-control-plane&quot;, loading...
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ kubectl apply -f deployment
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo kubectl apply -f deployment
+error: the path &quot;deployment&quot; does not exist
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo kubectl apply -f deployment.yaml
+deployment.apps/churn created
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo kubectl get pod
+NAME                    READY   STATUS    RESTARTS   AGE
+churn-66f869ddb-qg2xj   1/1     Running   0          10s
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo kubectl apply -f service.yaml
+service/churn created
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo kubectl port-forward service/churn 9696:80
+^C
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo kubectl apply -f service.yaml
+service/churn configured
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo kubectl port-forward service/churn 9696:80
+^C
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo kubectl apply -f service.yaml
+service/churn configured
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo kubectl port-forward service/churn 9696:80
+Forwarding from 127.0.0.1:9696 -&gt; 9696
+Forwarding from [::1]:9696 -&gt; 9696
+Handling connection for 9696
+
+</pre>

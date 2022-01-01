@@ -1,0 +1,148 @@
+<pre><font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ python predict-test.py
+
+Command &apos;python&apos; not found, did you mean:
+
+  command &apos;python3&apos; from deb python3
+  command &apos;python&apos; from deb python-is-python3
+
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ sudo docker run -it --rm -p 9696:9696 churn-model:v001
+[sudo] password for kallel: 
+Sorry, try again.
+[sudo] password for kallel:
+[2022-01-01 15:20:31 +0000] [1] [INFO] Starting gunicorn 20.1.0
+[2022-01-01 15:20:31 +0000] [1] [INFO] Listening at: http://0.0.0.0:9696 (1)
+[2022-01-01 15:20:31 +0000] [1] [INFO] Using worker: sync
+[2022-01-01 15:20:31 +0000] [8] [INFO] Booting worker with pid: 8
+^C[2022-01-01 15:20:36 +0000] [1] [INFO] Handling signal: int
+[2022-01-01 15:20:37 +0000] [1] [INFO] Shutting down: Master
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ python predict-test.py
+
+Command &apos;python&apos; not found, did you mean:
+
+  command &apos;python3&apos; from deb python3
+  command &apos;python&apos; from deb python-is-python3
+
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ python3 predict-test.py
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3/dist-packages/urllib3/connection.py&quot;, line 159, in _new_conn
+    conn = connection.create_connection(
+  File &quot;/usr/lib/python3/dist-packages/urllib3/util/connection.py&quot;, line 84, in create_connection
+    raise err
+  File &quot;/usr/lib/python3/dist-packages/urllib3/util/connection.py&quot;, line 74, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3/dist-packages/urllib3/connectionpool.py&quot;, line 665, in urlopen
+    httplib_response = self._make_request(
+  File &quot;/usr/lib/python3/dist-packages/urllib3/connectionpool.py&quot;, line 387, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File &quot;/usr/lib/python3.8/http/client.py&quot;, line 1252, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File &quot;/usr/lib/python3.8/http/client.py&quot;, line 1298, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File &quot;/usr/lib/python3.8/http/client.py&quot;, line 1247, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File &quot;/usr/lib/python3.8/http/client.py&quot;, line 1007, in _send_output
+    self.send(msg)
+  File &quot;/usr/lib/python3.8/http/client.py&quot;, line 947, in send
+    self.connect()
+  File &quot;/usr/lib/python3/dist-packages/urllib3/connection.py&quot;, line 187, in connect
+    conn = self._new_conn()
+  File &quot;/usr/lib/python3/dist-packages/urllib3/connection.py&quot;, line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x7f76b9d9b520&gt;: Failed to establish a new connection: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3/dist-packages/requests/adapters.py&quot;, line 439, in send
+    resp = conn.urlopen(
+  File &quot;/usr/lib/python3/dist-packages/urllib3/connectionpool.py&quot;, line 719, in urlopen
+    retries = retries.increment(
+  File &quot;/usr/lib/python3/dist-packages/urllib3/util/retry.py&quot;, line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host=&apos;localhost&apos;, port=9696): Max retries exceeded with url: /predict (Caused by NewConnectionError(&apos;&lt;urllib3.connection.HTTPConnection object at 0x7f76b9d9b520&gt;: Failed to establish a new connection: [Errno 111] Connection refused&apos;))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;predict-test.py&quot;, line 33, in &lt;module&gt;
+    response = requests.post(url, json=customer).json()
+  File &quot;/usr/lib/python3/dist-packages/requests/api.py&quot;, line 116, in post
+    return request(&apos;post&apos;, url, data=data, json=json, **kwargs)
+  File &quot;/usr/lib/python3/dist-packages/requests/api.py&quot;, line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File &quot;/usr/lib/python3/dist-packages/requests/sessions.py&quot;, line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File &quot;/usr/lib/python3/dist-packages/requests/sessions.py&quot;, line 646, in send
+    r = adapter.send(request, **kwargs)
+  File &quot;/usr/lib/python3/dist-packages/requests/adapters.py&quot;, line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host=&apos;localhost&apos;, port=9696): Max retries exceeded with url: /predict (Caused by NewConnectionError(&apos;&lt;urllib3.connection.HTTPConnection object at 0x7f76b9d9b520&gt;: Failed to establish a new connection: [Errno 111] Connection refused&apos;))
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ python3 predict-test.py
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3/dist-packages/urllib3/connection.py&quot;, line 159, in _new_conn
+    conn = connection.create_connection(
+  File &quot;/usr/lib/python3/dist-packages/urllib3/util/connection.py&quot;, line 84, in create_connection
+    raise err
+  File &quot;/usr/lib/python3/dist-packages/urllib3/util/connection.py&quot;, line 74, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3/dist-packages/urllib3/connectionpool.py&quot;, line 665, in urlopen
+    httplib_response = self._make_request(
+  File &quot;/usr/lib/python3/dist-packages/urllib3/connectionpool.py&quot;, line 387, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File &quot;/usr/lib/python3.8/http/client.py&quot;, line 1252, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File &quot;/usr/lib/python3.8/http/client.py&quot;, line 1298, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File &quot;/usr/lib/python3.8/http/client.py&quot;, line 1247, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File &quot;/usr/lib/python3.8/http/client.py&quot;, line 1007, in _send_output
+    self.send(msg)
+  File &quot;/usr/lib/python3.8/http/client.py&quot;, line 947, in send
+    self.connect()
+  File &quot;/usr/lib/python3/dist-packages/urllib3/connection.py&quot;, line 187, in connect
+    conn = self._new_conn()
+  File &quot;/usr/lib/python3/dist-packages/urllib3/connection.py&quot;, line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x7fea93e2f520&gt;: Failed to establish a new connection: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/usr/lib/python3/dist-packages/requests/adapters.py&quot;, line 439, in send
+    resp = conn.urlopen(
+  File &quot;/usr/lib/python3/dist-packages/urllib3/connectionpool.py&quot;, line 719, in urlopen
+    retries = retries.increment(
+  File &quot;/usr/lib/python3/dist-packages/urllib3/util/retry.py&quot;, line 436, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host=&apos;localhost&apos;, port=9696): Max retries exceeded with url: /predict (Caused by NewConnectionError(&apos;&lt;urllib3.connection.HTTPConnection object at 0x7fea93e2f520&gt;: Failed to establish a new connection: [Errno 111] Connection refused&apos;))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;predict-test.py&quot;, line 33, in &lt;module&gt;
+    response = requests.post(url, json=customer).json()
+  File &quot;/usr/lib/python3/dist-packages/requests/api.py&quot;, line 116, in post
+    return request(&apos;post&apos;, url, data=data, json=json, **kwargs)
+  File &quot;/usr/lib/python3/dist-packages/requests/api.py&quot;, line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File &quot;/usr/lib/python3/dist-packages/requests/sessions.py&quot;, line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File &quot;/usr/lib/python3/dist-packages/requests/sessions.py&quot;, line 646, in send
+    r = adapter.send(request, **kwargs)
+  File &quot;/usr/lib/python3/dist-packages/requests/adapters.py&quot;, line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host=&apos;localhost&apos;, port=9696): Max retries exceeded with url: /predict (Caused by NewConnectionError(&apos;&lt;urllib3.connection.HTTPConnection object at 0x7fea93e2f520&gt;: Failed to establish a new connection: [Errno 111] Connection refused&apos;))
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ python3 predict-test.py
+{&apos;churn&apos;: False, &apos;churn_probability&apos;: 0.32575611033978513}
+<font color="#8AE234"><b>kallel@kallel-VirtualBox</b></font>:<font color="#729FCF"><b>~/Documents/Hw10/mlbookcamp-code/course-zoomcamp/05-deployment/code</b></font>$ ^C
+</pre>

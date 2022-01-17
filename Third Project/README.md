@@ -121,6 +121,7 @@ The packages in the pipfile/requirements are checked with the help of ```pip fre
     * [Pipfile.lock](Pipfile.lock)
     * [predict.py](predict.py)
     * [model.bin](model.bin)
+    * [dv.bin](dv.bin)
     * _(Optional for training) [predictive_maintenance.csv](predictive_maintenance.csv) AND [train.py](train.py)_
 
 * **Make sure that pipenv is installed, check installing pipenv below to install pipenv.**
